@@ -1,0 +1,16 @@
+.liked-books {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.liked-books h1 {
+    margin-bottom: 20px;
+}
+
+.liked-books .book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}

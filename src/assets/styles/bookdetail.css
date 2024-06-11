@@ -1,0 +1,38 @@
+.book-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book-detail img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.book-detail h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.book-detail p {
+    margin-bottom: 10px;
+}
+
+.book-detail .rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.book-detail .rating span {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.book-detail .rating svg {
+    fill: #ffc107;
+}
