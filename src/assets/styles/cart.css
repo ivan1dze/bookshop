@@ -1,8 +1,25 @@
+/* bebas-neue-regular - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 400;
+    src: url('src/assets/font/bebas-neue-v14-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+p {
+    font-family: 'Bebas Neue';
+}
+
+h2 {
+    font-family: 'Bebas Neue';
+}
 .cart-summary {
     margin-top: 20px;
 }
 
 .cart-summary p {
+    font-family: "Bebas Neue";
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -11,6 +28,7 @@ li {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    font-family: "Bebas Neue";
 }
 
 li img {
