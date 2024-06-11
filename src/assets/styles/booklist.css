@@ -1,5 +1,15 @@
+/* bebas-neue-regular - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 400;
+    src: url('src/assets/font/bebas-neue-v14-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 .book-list {
     display: flex;
+    font-family: Bebas Neue;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
@@ -27,14 +37,8 @@
 }
 
 .book-card button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
+    padding: 5px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.book-card button:hover {
-    background-color: #0056b3;
-}

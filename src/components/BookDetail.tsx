@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { getBookByISBN } from '../api/books';
+import { addToCart } from '../store/cartSlice';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import '../assets/styles/bookdetail.css';
 
 const BookDetail: React.FC = () => {
     const { isbn13 } = useParams<{ isbn13: string }>();
     const [book, setBook] = useState<any>(null);
+    const [quantity, setQuantity] = useState(1);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -21,16 +25,24 @@ const BookDetail: React.FC = () => {
         return <div>Loading...</div>;
     }
 
-    // Парсим рейтинг к числу
     const rating = parseFloat(book.rating);
 
-    // Создаем массив звезд на основе рейтинга
     const stars = Array.from({ length: 5 }, (_, i) => (
         <span key={i}>{i < rating ? <FaStar /> : <FaRegStar />}</span>
     ));
 
+    const handleAddToCart = () => {
+        dispatch(addToCart({
+            isbn13: book.isbn13,
+            title: book.title,
+            price: parseFloat(book.price.replace('$', '')),
+            quantity,
+            image: book.image
+        }));
+    };
+
     return (
-        <div className="book-detail"> {/* Исправлено: Добавлен класс для обертки */}
+        <div>
             <h1>{book.title}</h1>
             <img src={book.image} alt={book.title} />
             <p>{book.subtitle}</p>
@@ -39,7 +51,16 @@ const BookDetail: React.FC = () => {
             <p>Authors: {book.authors}</p>
             <p>Publisher: {book.publisher}</p>
             <p>Year: {book.year}</p>
-            <div className="rating">{stars}</div> {/* Исправлено: Добавлен класс для рейтинга */}
+            <div className="rating">{stars}</div>
+            <div>
+                <input
+                    type="number"
+                    value={quantity}
+                    onChange={(e) => setQuantity(parseInt(e.target.value))}
+                    min="1"
+                />
+                <button onClick={handleAddToCart}>Add to Cart</button>
+            </div>
         </div>
     );
 };

@@ -11,7 +11,7 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import LikedBooks from './components/LikedBooks';
 import { getNewBooks } from './api/books';
-import Footer from "./components/Footer.tsx";
+import Footer from "./components/Footer";
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<any[]>([]);

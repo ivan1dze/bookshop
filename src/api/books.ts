@@ -17,7 +17,6 @@ export const searchBooks = async (query: string, page: number = 1) => {
     return response.data;
 };
 
-// Убедитесь, что эта функция уже правильно названа
 export const getBookByISBN = async (isbn13: string) => {
     const response = await axios.get(`${API_BASE_URL}/books/${isbn13}`);
     return response.data;

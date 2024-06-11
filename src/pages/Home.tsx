@@ -1,5 +1,6 @@
 import React from 'react';
 import BookList from '../components/BookList';
+import '../assets/styles/home.css';
 
 interface HomeProps {
     books: any[];
@@ -10,7 +11,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ books, likedBooks, onLike }) => {
     return (
         <div>
-            <h1>New Releases</h1>
+            <h1>NEW RELEASES BOOKS</h1>
             <BookList books={books} likedBooks={likedBooks} onLike={onLike} />
         </div>
     );
