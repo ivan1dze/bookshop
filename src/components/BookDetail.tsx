@@ -42,24 +42,33 @@ const BookDetail: React.FC = () => {
     };
 
     return (
-        <div>
-            <h1>{book.title}</h1>
-            <img src={book.image} alt={book.title} />
-            <p>{book.subtitle}</p>
-            <p>Price: {book.price}</p>
-            <p>Description: {book.desc}</p>
-            <p>Authors: {book.authors}</p>
-            <p>Publisher: {book.publisher}</p>
-            <p>Year: {book.year}</p>
-            <div className="rating">{stars}</div>
-            <div>
-                <input
-                    type="number"
-                    value={quantity}
-                    onChange={(e) => setQuantity(parseInt(e.target.value))}
-                    min="1"
-                />
-                <button onClick={handleAddToCart}>Add to Cart</button>
+        <div className="book-detail-container">
+            <div className="book-detail">
+                <img src={book.image} alt={book.title} className="book-detail-image" />
+                <div className="book-detail-info">
+                    <h1>{book.title}</h1>
+                    <p className="book-detail-price">{book.price}</p>
+                    <div className="book-detail-rating">{stars}</div>
+                    <p><strong>Authors:</strong> {book.authors}</p>
+                    <p><strong>Publisher:</strong> {book.publisher}</p>
+                    <p><strong>Language:</strong> {book.language}</p>
+                    <p><strong>Pages:</strong> {book.pages}</p>
+                    <p><strong>Year:</strong> {book.year}</p>
+                    <div className="quantity-container">
+                        <input
+                            type="number"
+                            value={quantity}
+                            onChange={(e) => setQuantity(parseInt(e.target.value))}
+                            min="1"
+                            className="quantity-input"
+                        />
+                        <button className="book-detail-add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div className="book-description">
+                <h2>Description</h2>
+                <p>{book.desc}</p>
             </div>
         </div>
     );
