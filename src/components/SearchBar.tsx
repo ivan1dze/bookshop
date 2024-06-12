@@ -15,14 +15,17 @@ const SearchBar: React.FC = () => {
 
         debouncedSearch(query);
 
-
         return () => {
             debouncedSearch.cancel();
         };
     }, [query, navigate]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value);
+        const value = event.target.value;
+        setQuery(value);
+        if (value === '') {
+            navigate('/');
+        }
     };
 
     return (
