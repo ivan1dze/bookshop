@@ -7,7 +7,6 @@ import Home from './pages/Home';
 import BookDetail from './components/BookDetail';
 import SearchResults from './pages/SearchResults';
 import Cart from './pages/Cart';
-import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import LikedBooks from './components/LikedBooks';
 import { getNewBooks } from './api/books';
@@ -43,7 +42,6 @@ const App: React.FC = () => {
                     <Route path="/books/:isbn13" element={<BookDetail />} />
                     <Route path="/search/:query" element={<SearchResults />} />
                     <Route path="/cart" element={<Cart />} />
-                    <Route path="/login" element={<Login />} />
                     <Route path="/liked" element={<LikedBooks books={books} likedBooks={likedBooks} />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
