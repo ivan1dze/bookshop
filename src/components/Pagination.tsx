@@ -1,4 +1,5 @@
 import React from 'react';
+import '../assets/styles/booklist.css';
 
 interface PaginationProps {
     currentPage: number;
@@ -7,15 +8,29 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
-    const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
-
     return (
-        <div>
-            {pageNumbers.map((page) => (
-                <button className="page-switch-button" key={page} onClick={() => onPageChange(page)} disabled={page === currentPage}>
-                    {page}
+        <div className="pagination">
+            <button
+                onClick={() => onPageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+            >
+                Previous
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                    key={i}
+                    onClick={() => onPageChange(i + 1)}
+                    className={currentPage === i + 1 ? 'active' : ''}
+                >
+                    {i + 1}
                 </button>
             ))}
+            <button
+                onClick={() => onPageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+            >
+                Next
+            </button>
         </div>
     );
 };

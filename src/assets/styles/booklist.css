@@ -9,7 +9,7 @@
 
 .book-list {
     display: flex;
-    font-family: Bebas Neue;
+    font-family: 'Bebas Neue';
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
@@ -42,3 +42,28 @@
     cursor: pointer;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'Bebas Neue';
+}
+
+.pagination button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.pagination button.active {
+    background-color: #444;
+}

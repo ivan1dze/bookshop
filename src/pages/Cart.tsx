@@ -27,8 +27,8 @@ const Cart: React.FC = () => {
     };
 
     return (
-        <div>
-            <h2>Shopping Cart</h2>
+        <div className="cart">
+            <h2>Your Cart</h2>
             {cartItems.length === 0 ? (
                 <p>Your cart is empty</p>
             ) : (
@@ -37,22 +37,26 @@ const Cart: React.FC = () => {
                         {cartItems.map((item) => (
                             <li key={item.isbn13}>
                                 <img src={item.image} alt={item.title} />
-                                <p>{item.title}</p>
-                                <p>Price: ${item.price}</p>
-                                <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
-                                <input
-                                    type="number"
-                                    value={item.quantity}
-                                    onChange={(e) => handleQuantityChange(item.isbn13, parseInt(e.target.value))}
-                                    min="1"
-                                />
-                                <button onClick={() => handleRemove(item.isbn13)}>Remove</button>
+                                <div className="item-details">
+                                    <h2>{item.title}</h2>
+                                    <div className="quantity-control">
+                                        <button onClick={() => handleQuantityChange(item.isbn13, item.quantity - 1)}>-</button>
+                                        <span>{item.quantity}</span>
+                                        <button onClick={() => handleQuantityChange(item.isbn13, item.quantity + 1)}>+</button>
+                                    </div>
+                                </div>
+                                <div className="item-price">${item.price.toFixed(2)}</div>
+                                <button className="remove-item" onClick={() => handleRemove(item.isbn13)}>×</button>
                             </li>
                         ))}
                     </ul>
-                    <div className="cart-summary">
-                        <p>Total Amount: ${calculateTotal()}</p>
-                        <button onClick={handleClear}>Clear Cart</button>
+                    <div className="summary">
+                        <div className="summary-total">
+                            <p>Sum total: ${calculateTotal()}</p>
+                            <p>VAT: ${(parseFloat(calculateTotal()) * 0.18).toFixed(2)}</p>
+                            <h3>Total: ${(parseFloat(calculateTotal()) * 1.18).toFixed(2)}</h3>
+                        </div>
+                        <button className="checkout" onClick={handleClear}>Check Out</button>
                     </div>
                 </div>
             )}

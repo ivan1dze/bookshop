@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import { FaEnvelope } from 'react-icons/fa';
-import '../assets/styles/Newsletter/Newsletter.css'; //
+import '../assets/styles/Newsletter/Newsletter.css';
 
 const Newsletter: React.FC = () => {
     const [email, setEmail] = useState('');

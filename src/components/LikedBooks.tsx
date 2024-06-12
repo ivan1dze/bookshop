@@ -1,5 +1,5 @@
 import React from 'react';
-import BookCard from './BookCard';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import '../assets/styles/likedpage.css';
 
 interface LikedBooksProps {
@@ -17,12 +17,16 @@ const LikedBooks: React.FC<LikedBooksProps> = ({ books, likedBooks, onLike }) =>
             <div className="book-list">
                 {likedBooksList.length > 0 ? (
                     likedBooksList.map((book) => (
-                        <BookCard
-                            key={book.isbn13}
-                            book={book}
-                            onLike={onLike}
-                            isLiked={likedBooks.includes(book.isbn13)}
-                        />
+                        <div className="book-item" key={book.isbn13}>
+                            <img src={book.image} alt={book.title} />
+                            <div className="book-info">
+                                <h2>{book.title}</h2>
+                                <p className="price">{book.price}</p>
+                            </div>
+                            <button className="like-button" onClick={() => onLike(book.isbn13)}>
+                                {likedBooks.includes(book.isbn13) ? <FaHeart /> : <FaRegHeart className="unlike" />}
+                            </button>
+                        </div>
                     ))
                 ) : (
                     <p>No liked books.</p>
