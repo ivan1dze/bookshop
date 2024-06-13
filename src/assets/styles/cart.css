@@ -25,6 +25,10 @@ h2, p {
     margin-bottom: 20px;
 }
 
+.cart h3 {
+    font-family: 'Bebas Neue';
+}
+
 .cart ul {
     list-style: none;
     padding: 0;
@@ -92,7 +96,7 @@ h2, p {
     align-items: center;
     margin-top: 20px;
     padding-top: 20px;
-    border-top: 1px solid #ddd;
+    border-top: 1px
 }
 
 .cart .summary-total {
