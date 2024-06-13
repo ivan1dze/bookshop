@@ -100,3 +100,47 @@
     font-size: 16px;
     line-height: 1.5;
 }
+
+.similar-books {
+    background-color: #d4ebfa;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.similar-books h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.similar-book-item {
+    text-decoration: none;
+    font-family: 'Bebas Neue';
+    color: inherit;
+    display: inline-block;
+    width: 30%;
+    margin-right: 1.5%;
+    vertical-align: top;
+    text-align: center;
+}
+
+.similar-book-item img {
+    width: 60%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.similar-book-info {
+    text-align: center;
+
+}
+
+.similar-book-info h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.similar-book-info p {
+    font-size: 16px;
+    color: #555;
+}

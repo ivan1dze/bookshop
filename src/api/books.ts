@@ -21,3 +21,10 @@ export const getBookByISBN = async (isbn13: string) => {
     const response = await axios.get(`${API_BASE_URL}/books/${isbn13}`);
     return response.data;
 };
+
+export const getSimilarBooks = async (isbn13: string) => {
+    const bookDetails = await getBookByISBN(isbn13);
+    const title = bookDetails.title.split(' ').slice(0, 3).join(' '); // берем 3 слова из названия для показа похожих книг
+    const response = await axios.get(`${API_BASE_URL}/search/${title}`);
+    return response.data;
+};

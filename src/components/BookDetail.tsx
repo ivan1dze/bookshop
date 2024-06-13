@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getBookByISBN } from '../api/books';
+import { getBookByISBN, searchBooks } from '../api/books';
 import { addToCart } from '../store/cartSlice';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import '../assets/styles/bookdetail.css';
@@ -9,6 +9,7 @@ import '../assets/styles/bookdetail.css';
 const BookDetail: React.FC = () => {
     const { isbn13 } = useParams<{ isbn13: string }>();
     const [book, setBook] = useState<any>(null);
+    const [similarBooks, setSimilarBooks] = useState<any[]>([]);
     const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
 
@@ -16,6 +17,10 @@ const BookDetail: React.FC = () => {
         const fetchBook = async () => {
             const data = await getBookByISBN(isbn13);
             setBook(data);
+
+            // Fetch similar books based on the book title
+            const similar = await searchBooks(data.title.split(' ')[0]);
+            setSimilarBooks(similar.books.slice(0, 3)); // Get the first 3 similar books
         };
 
         fetchBook();
@@ -39,6 +44,13 @@ const BookDetail: React.FC = () => {
             quantity,
             image: book.image
         }));
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
 
     return (
@@ -69,6 +81,25 @@ const BookDetail: React.FC = () => {
             <div className="book-description">
                 <h2>Description</h2>
                 <p>{book.desc}</p>
+            </div>
+            <div className="similar-books">
+                <h2>Similar Books</h2>
+                <div className="similar-book-list">
+                    {similarBooks.map((similarBook) => (
+                        <Link
+                            to={`/books/${similarBook.isbn13}`}
+                            key={similarBook.isbn13}
+                            className="similar-book-item"
+                            onClick={scrollToTop} // Добавляем обработчик клика для прокрутки вверх
+                        >
+                            <img src={similarBook.image} alt={similarBook.title} />
+                            <div className="similar-book-info">
+                                <h3>{similarBook.title}</h3>
+                                <p>{similarBook.price}</p>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     );
