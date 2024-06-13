@@ -14,7 +14,10 @@ import Footer from "./components/Footer";
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<any[]>([]);
-    const [likedBooks, setLikedBooks] = useState<string[]>([]);
+    const [likedBooks, setLikedBooks] = useState<string[]>(() => {
+        const savedLikes = localStorage.getItem('likedBooks');
+        return savedLikes ? JSON.parse(savedLikes) : [];
+    });
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -26,11 +29,14 @@ const App: React.FC = () => {
     }, []);
 
     const handleLike = (isbn13: string) => {
-        setLikedBooks((prevLikedBooks) =>
-            prevLikedBooks.includes(isbn13)
+        setLikedBooks((prevLikedBooks) => {
+            const newLikedBooks = prevLikedBooks.includes(isbn13)
                 ? prevLikedBooks.filter((id) => id !== isbn13)
-                : [...prevLikedBooks, isbn13]
-        );
+                : [...prevLikedBooks, isbn13];
+
+            localStorage.setItem('likedBooks', JSON.stringify(newLikedBooks));
+            return newLikedBooks;
+        });
     };
 
     return (
@@ -42,7 +48,7 @@ const App: React.FC = () => {
                     <Route path="/books/:isbn13" element={<BookDetail />} />
                     <Route path="/search/:query" element={<SearchResults />} />
                     <Route path="/cart" element={<Cart />} />
-                    <Route path="/liked" element={<LikedBooks books={books} likedBooks={likedBooks} />} />
+                    <Route path="/liked" element={<LikedBooks books={books} likedBooks={likedBooks} onLike={handleLike} />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { removeFromCart, updateQuantity, clearCart } from '../store/cartSlice';
@@ -7,6 +7,11 @@ import '../assets/styles/cart.css';
 const Cart: React.FC = () => {
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const dispatch = useDispatch();
+
+    // Save cart state to localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify({ items: cartItems }));
+    }, [cartItems]);
 
     const handleRemove = (isbn13: string) => {
         dispatch(removeFromCart({ isbn13 }));
