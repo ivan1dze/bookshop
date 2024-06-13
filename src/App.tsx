@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 import LikedBooks from './components/LikedBooks';
 import { getNewBooks } from './api/books';
 import Footer from "./components/Footer";
+import Login from './pages/login';
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<any[]>([]);
@@ -49,6 +50,7 @@ const App: React.FC = () => {
                     <Route path="/search/:query" element={<SearchResults />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/liked" element={<LikedBooks books={books} likedBooks={likedBooks} onLike={handleLike} />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />

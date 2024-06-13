@@ -12,7 +12,7 @@ const Header: React.FC = () => (
         <nav className="nav-icons">
             <Link to="/liked"><FaHeart /></Link>
             <Link to="/cart"><FaShoppingCart /></Link>
-            <Link to="/account"><FaUser /></Link>
+            <Link to="/login"><FaUser /></Link>
         </nav>
     </header>
 );
